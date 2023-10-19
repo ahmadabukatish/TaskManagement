@@ -10,6 +10,7 @@ import {BiSolidAddToQueue} from 'react-icons/bi';
 
 interface Props
 {
+    id:number;
     title:string;
     description:string;    
     dueDate:Date;

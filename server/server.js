@@ -51,17 +51,18 @@ app.post("/api/insert",(req,res)=>{
     const decription=req.body.decription
     const duedate=req.body.duedate
     const status=req.body.status
+    const id=req.body.id;
     if (title===""){throw new Error("Title cant be empty")}
-    const sqlInsert="INSERT INTO tasks (title,decription,duedate,status) VALUES (?,?,?,?);"
-    db.query(sqlInsert,[title,decription,duedate,status], (err,result)=>{ 
+    const sqlInsert="INSERT INTO tasks (id,title,decription,duedate,status) VALUES (?,?,?,?,?);"
+    db.query(sqlInsert,[id,title,decription,duedate,status], (err,result)=>{ 
         if (err){
         } })
 })
-app.delete("/api/delete/:title",(req,res)=>
+app.delete("/api/delete/:id",(req,res)=>
 {
-    const title=req.params.title;
-    const sqlDelete="DELETE FROM tasks WHERE title = ?;"
-    db.query(sqlDelete,title, (err,result)=>{
+    const id=req.params.id;
+    const sqlDelete="DELETE FROM tasks WHERE id=?;"
+    db.query(sqlDelete,id, (err,result)=>{
         if (err){
         }
     })

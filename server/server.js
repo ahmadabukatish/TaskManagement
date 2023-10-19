@@ -32,30 +32,23 @@ app.get("/api/get",(req,res)=>{
     const sqlSelect="SELECT * FROM tasks";
     db.query(sqlSelect,(err,result)=>{
         if (err){
+            throw new Error(err)
         }
         res.send(result);})
 
 })
 
-// app.get("/*",function(req,res)
-// {
-//     res.sendFile(
-//         path.join(__dirname,"../client/build/index.html"),
-//         function(err){
-//             if(err){res.status(500).send(err)}
-//         }
-//     )
-// })
 app.post("/api/insert",(req,res)=>{
     const title=req.body.title
     const decription=req.body.decription
     const duedate=req.body.duedate
     const status=req.body.status
     const id=req.body.id;
-    if (title===""){throw new Error("Title cant be empty")}
+    if (title==="" && decription===""){throw new Error("Title and Description cant be empty")}
     const sqlInsert="INSERT INTO tasks (id,title,decription,duedate,status) VALUES (?,?,?,?,?);"
     db.query(sqlInsert,[id,title,decription,duedate,status], (err,result)=>{ 
         if (err){
+            throw new Error(err)
         } })
 })
 app.delete("/api/delete/:id",(req,res)=>
@@ -64,6 +57,7 @@ app.delete("/api/delete/:id",(req,res)=>
     const sqlDelete="DELETE FROM tasks WHERE id=?;"
     db.query(sqlDelete,id, (err,result)=>{
         if (err){
+            throw new Error(err)
         }
     })
 
@@ -74,6 +68,8 @@ app.put("/api/update",(req,res)=>{
     const sqlUpdate="UPDATE tasks SET status = ? WHERE title = ?;"
     db.query(sqlUpdate,[status,title], (err,result)=>{   
         if (err){
+            throw new Error(err)
+
         }
 })
 })

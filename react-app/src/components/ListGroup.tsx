@@ -86,11 +86,11 @@ function ListGroup()
    
         <ul className="list-group">
         {itemsArr.map((item:Props,index:number) =>
-                <>
+                <div key={item.id}>
                 {availableStatus[filter].includes(item.status)?
-                    
+                
                     <TaskCard index={index}></TaskCard>:null}   
-        </>)}   
+        </div>)}   
         </ul>
     </div>
   )

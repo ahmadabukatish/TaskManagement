@@ -22,15 +22,14 @@ function AddNewTask(){
         let m=dueDateState.getMonth()+1;
         let time=''
         time=dueDateState.getDate()+'/'+m+'/'+dueDateState.getFullYear()
-        let int32View = Math.floor(Math.random() * 100000000) + 1 ; 
-        let x=''+int32View;
-        Axios.post("https://taskmanageapp-02a301c13f32.herokuapp.com/api/insert",{id:x,title:titleState,decription:descriptionState,duedate:time,
+        let generatedId = Math.floor(Math.random() * 100000000) + 1 ; 
+        let idx=''+generatedId;
+        Axios.post("https://taskmanageapp-02a301c13f32.herokuapp.com/api/insert",{id:idx,title:titleState,decription:descriptionState,duedate:time,
         status:'pending'}).then(()=>{
 
         }).catch(e=>{navigate('../errorPage')});
         
-        
-        taskArr=[...taskArr,{id:x,title:titleState,description:descriptionState,dueDate:time,status:'pending'}];
+        taskArr=[...taskArr,{id:idx,title:titleState,decription:descriptionState,duedate:time,status:'pending'}];
         dispatch(addTask(taskArr));
         navigate(-1);
     }

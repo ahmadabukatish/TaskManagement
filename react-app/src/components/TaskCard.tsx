@@ -45,7 +45,7 @@ function TaskCard({index}:Props)
                     <select 
                         value={item.status}
                         onChange={(e)=>{handleChangeStatus(e);}}
-                        style={{float:"right",marginRight:15,backgroundColor:(item.status=="completed")?"green":"red"}}>
+                        style={{float:"right",marginRight:15,backgroundColor:(item.status=="completed")?"green":"gray"}}>
                         <option value="pending">pending</option>            
                         <option value="completed">completed</option>            
                     </select>  

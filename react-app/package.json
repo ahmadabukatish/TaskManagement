@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "start-client":"react-scripts start"
+    "build": "tsc && vite build && (cd ../server && npm install)",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -1,7 +1,7 @@
 import ListGroup from "./components/ListGroup"
 import { Route,Routes } from "react-router-dom"
 import AddNewTask from "./components/AddNewTask"
-import ErrorPage from "./components/errorPage"
+import ErrorPage from "./components/ErrorPage"
 
 function App() {
   

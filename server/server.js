@@ -27,14 +27,24 @@ app.use(cors())
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.get("/api/get",(req,res)=>{
-    const sqlSelect="SELECT * FROM tasks";
-    db.query(sqlSelect,(err,result)=>{
-        if (err){
-            throw (err);
-        }
-        res.send(result);})
+// app.get("/api/get",(req,res)=>{
+//     const sqlSelect="SELECT * FROM tasks";
+//     db.query(sqlSelect,(err,result)=>{
+//         if (err){
+//             throw (err);
+//         }
+//         res.send(result);})
 
+// })
+
+app.get("/*",function(req,res)
+{
+    res.sendFile(
+        path.join(__dirname,"../client/build/index.html"),
+        function(err){
+            if(err){res.status(500).send(err)}
+        }
+    )
 })
 app.post("/api/insert",(req,res)=>{
     const title=req.body.title
@@ -70,7 +80,7 @@ app.put("/api/update",(req,res)=>{
 })
 })
 
-app.listen(5180,()=>
+app.listen(process.env.PORT,5180,()=>
 {
     console.log('running in port 5190n')
 })

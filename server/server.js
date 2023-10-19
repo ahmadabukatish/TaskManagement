@@ -7,12 +7,12 @@ const bodyParser=require("body-parser")
 const app=express()
 const mysql=require("mysql2")
 
-const db=mysql.createPool(
+const db=mysql.createConnection(
     {
-        host:"localhost",
-        user:"root",
-        password:"Sosomomo2!",
-        database:"taskmanagementdatabase"
+        host:"i54jns50s3z6gbjt.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
+        user:"c0yvguqu2f5voy9e",
+        password:"rpzto50vpszed3o2",
+        database:"ru1ctmc6w31xrshz"
 
     }
 )
@@ -21,6 +21,7 @@ app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Access-Control-Allow-Credentials', true);
+    
     next();
 });
 app.use(cors())
@@ -31,7 +32,6 @@ app.get("/api/get",(req,res)=>{
     const sqlSelect="SELECT * FROM tasks";
     db.query(sqlSelect,(err,result)=>{
         if (err){
-            throw (err);
         }
         res.send(result);})
 
@@ -55,7 +55,6 @@ app.post("/api/insert",(req,res)=>{
     const sqlInsert="INSERT INTO tasks (title,decription,duedate,status) VALUES (?,?,?,?);"
     db.query(sqlInsert,[title,decription,duedate,status], (err,result)=>{ 
         if (err){
-            throw (err);
         } })
 })
 app.delete("/api/delete/:title",(req,res)=>
@@ -64,7 +63,6 @@ app.delete("/api/delete/:title",(req,res)=>
     const sqlDelete="DELETE FROM tasks WHERE title = ?;"
     db.query(sqlDelete,title, (err,result)=>{
         if (err){
-            throw (err);
         }
     })
 
@@ -75,12 +73,11 @@ app.put("/api/update",(req,res)=>{
     const sqlUpdate="UPDATE tasks SET status = ? WHERE title = ?;"
     db.query(sqlUpdate,[status,title], (err,result)=>{   
         if (err){
-            throw (err);
         }
 })
 })
 
-app.listen(5180,()=>
+app.listen(process.env.PORT|| 5180,()=>
 {
-    console.log('running in port 5190n')
+    console.log('running in port 5190')
 })

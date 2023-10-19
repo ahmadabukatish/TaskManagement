@@ -22,7 +22,7 @@ function AddNewTask(){
         let m=dueDateState.getMonth()+1;
         let time=''
         time=dueDateState.getDate()+'/'+m+'/'+dueDateState.getFullYear()
-        Axios.post("http://localhost:5180/api/insert",{title:titleState,decription:descriptionState,duedate:time,
+        Axios.post("https://taskmanageapp-02a301c13f32.herokuapp.com/api/insert",{title:titleState,decription:descriptionState,duedate:time,
         status:'pending'}).then(()=>{
 
         }).catch(e=>{navigate('../errorPage')});

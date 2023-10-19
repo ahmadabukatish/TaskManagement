@@ -16,7 +16,7 @@ function TaskCard({index}:Props)
     const navigate=useNavigate();
     const handleDeleteItem=()=>
     {
-        Axios.delete(`http://localhost:5180/api/delete/${item.title}`).catch(e=>{navigate('../errorPage')});
+        Axios.delete(`https://taskmanageapp-02a301c13f32.herokuapp.com/api/delete/${item.title}`).catch(e=>{navigate('../errorPage')});
         let temp=[...itemsArr];
         temp.splice(index,1)
         dispatch(addTask(temp));
@@ -24,7 +24,7 @@ function TaskCard({index}:Props)
 
     const handleChangeStatus=(e:any)=>
     {
-        Axios.put("http://localhost:5180/api/update",{title:item.title,status:e.target.value}).catch(e=>{navigate('../errorPage')});
+        Axios.put("https://taskmanageapp-02a301c13f32.herokuapp.com/api/update",{title:item.title,status:e.target.value}).catch(e=>{navigate('../errorPage')});
         let temp=[...itemsArr];
         temp.splice(index,1)
         temp=[...temp,{title:item.title,decription:item.decription,duedate:item.duedate,status:e.target.value}];

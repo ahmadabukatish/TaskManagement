@@ -27,7 +27,7 @@ function ListGroup()
     const mainTitle=['All Tasks','Pending Tasks','Completed Tasks']
     useEffect(()=>
     {
-    Axios.get("http://localhost:5180/api/get").then((response)=>{
+    Axios.get("https://taskmanageapp-02a301c13f32.herokuapp.com/api/get").then((response)=>{
         
             dispatch(addTask(response.data));
 

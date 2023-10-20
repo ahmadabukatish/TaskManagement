@@ -2,6 +2,7 @@
 
 const express=require("express")
 const cors=require("cors")
+const path=require("path")
 const bodyParser=require("body-parser")
 
 const app=express()
@@ -16,6 +17,7 @@ const db=mysql.createConnection(
 
     }
 )
+app.use(express.static(path.join(__dirname+"/public")))
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -27,16 +29,6 @@ app.use(function(req, res, next) {
 app.use(cors())
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}));
-
-
-app.get("/",function(req,res){
-    res.sendFile(
-        path.join(__dirname,"../react-app/index.html"),
-        function(err){
-            res.status(500).send(err)
-        }
-    )
-})
 
 app.get("/api/get",(req,res)=>{
     const sqlSelect="SELECT * FROM tasks";
@@ -86,5 +78,5 @@ app.put("/api/update",(req,res)=>{
 
 app.listen(process.env.PORT|| 5180,()=>
 {
-    console.log('running in port 5190')
+    console.log('running in port 5180')
 })

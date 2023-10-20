@@ -12,8 +12,8 @@ interface Props
 {
     id:number;
     title:string;
-    description:string;    
-    dueDate:Date;
+    decription:string;    
+    duedate:Date;
     status:string;
 }
 
@@ -22,19 +22,22 @@ function ListGroup()
     let itemsArr:Props[]=useSelector((state :{task:any})=> state.task.value);
     const navigate=useNavigate();
     const [select,setSelect]=useState('pending first');
+    
     const [filter,setFilter]=useState(0);
     const dispatch = useDispatch()
     const availableStatus=[['completed','pending'],['pending'],['completed']]
     const mainTitle=['All Tasks','Pending Tasks','Completed Tasks']
+    
     useEffect(()=>
     {
+    if (itemsArr.length===0){
     Axios.get("https://taskmanageapp-02a301c13f32.herokuapp.com/api/get").then((response)=>{
         
             dispatch(addTask(response.data));
 
-    })
+    })}
     },[])
-
+    
     const sortByPending=(a:Props,b:Props)=>
     {
         if (a.status=="pending"){
@@ -68,7 +71,9 @@ function ListGroup()
         </div>
         <div  style={{borderRadius:25,padding:10,flex:0.8}}>
         <BiSolidAddToQueue size={40} style={{float:'left'}}
-                onClick={()=>{navigate('newTodoItem');}
+                onClick={()=>{navigate('newTodoItem');
+                setSelect('pending first')
+            }
                 }/>
         </div>
         <div>

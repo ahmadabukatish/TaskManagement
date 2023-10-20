@@ -2,6 +2,7 @@
 
 const express=require("express")
 const cors=require("cors")
+const path=require("path")
 const bodyParser=require("body-parser")
 
 const app=express()
@@ -27,7 +28,7 @@ app.use(function(req, res, next) {
 app.use(cors())
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}));
-
+app.use(express.static(path.join(__dirname+"/public")))
 app.get("/api/get",(req,res)=>{
     const sqlSelect="SELECT * FROM tasks";
     db.query(sqlSelect,(err,result)=>{

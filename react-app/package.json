@@ -7,7 +7,7 @@
     "node": "18.15"
   },
   "scripts": {
-    "start-react-app": "react-scripts start",
+    "start": "react-scripts start",
     "dev": "vite",
     "build": "tsc && vite build &&(cd ../server && npm install)",
     "preview": "vite preview"

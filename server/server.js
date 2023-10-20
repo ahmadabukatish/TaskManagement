@@ -29,15 +29,15 @@ app.use(cors())
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.get("/api/get",(req,res)=>{
-    const sqlSelect="SELECT * FROM tasks";
-    db.query(sqlSelect,(err,result)=>{
-        if (err){
-            throw new Error(err)
-        }
-        res.send(result);})
+// app.get("/api/get",(req,res)=>{
+//     const sqlSelect="SELECT * FROM tasks";
+//     db.query(sqlSelect,(err,result)=>{
+//         if (err){
+//             throw new Error(err)
+//         }
+//         res.send(result);})
 
-})
+// })
 
 app.post("/api/insert",(req,res)=>{
     const title=req.body.title

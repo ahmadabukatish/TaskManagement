@@ -28,11 +28,11 @@ function ListGroup()
     const mainTitle=['All Tasks','Pending Tasks','Completed Tasks']
     useEffect(()=>
     {
-    // Axios.get("https://taskmanageapp-02a301c13f32.herokuapp.com/api/get").then((response)=>{
+    Axios.get("https://taskmanageapp-02a301c13f32.herokuapp.com/api/get").then((response)=>{
         
-    //         dispatch(addTask(response.data));
+            dispatch(addTask(response.data));
 
-    // })
+    })
     },[])
 
     const sortByPending=(a:Props,b:Props)=>
